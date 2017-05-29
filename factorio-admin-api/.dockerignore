@@ -1,0 +1,9 @@
+node_modules
+themes
+.git
+.vscode
+.env
+sass
+console.txt
+saves
+settings
