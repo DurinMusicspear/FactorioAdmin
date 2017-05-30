@@ -5,34 +5,53 @@ const Rcon = require('modern-rcon');
 
 module.exports = function () {
     var rconClient = {};
-    var rcon = null;
-    var connected = false;
+    rconClient.rcon = null;
+    rconClient.connected = false;
+    rconClient.connecting = false;
 
     rconClient.connect = function() {
-        rcon = new Rcon('localhost', 'd77LPgbPfAxk');
+        this.rcon = new Rcon('localhost', 'd77LPgbPfAxk');
+        this.connecting = true;
 
-        rcon.connect().then(() => {
-            connected = true;
+        this.rcon.connect().then(() => {
+            this.connected = true;
+            this.connecting = false;
         }).catch(err => {
             console.log('Rcon connection refused: ', err);
+            this.connected = false;
+            this.connecting = false;
         });
+    }
+
+    rconClient.connect = function() {
+        if(this.rcon) {
+            this.rcon.disconnect();
+            this.rcon = null;
+        }
+        this.connected = false;
+        this.connecting = false;
     }
 
     rconClient.stats = async (function () {
 
-        if(!connected) {
+        if(!rconClient.connected && !rconClient.connecting) {
             rconClient.connect();
             console.log('Rcon not connected');
-            // return false;
+            return false;
         }
 
         try {
             var time = await (rcon.send('/time'));
             var players = await (rcon.send('/players'));
+            var playersOnline = await (rcon.send('/players online'));
             var evolution = await (rcon.send('/evolution'));
-            return { time: time, players: players, evolution: evolution};
+            return { time: time, players: players, playersOnline: playersOnline, evolution: evolution};
         } catch (ex) {
             console.log(ex);
+
+            if(!rconClient.connecting)
+                rconClient.disconnect();
+
             return false;
         }
     })

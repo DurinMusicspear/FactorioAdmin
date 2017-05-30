@@ -15,7 +15,7 @@ export class ApiClient {
     }
 
     stopServer() {
-        return this.client.get('start');
+        return this.client.get('stop');
     }
 
     getServerSettings() {
@@ -36,5 +36,9 @@ export class ApiClient {
 
     getMapGenSettings() {
         return this.client.get('map-gen-settings');
+    }
+
+    getStatus() {
+        return this.client.get('server-stats');
     }
 }

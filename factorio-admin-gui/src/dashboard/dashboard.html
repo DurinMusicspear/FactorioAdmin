@@ -1,6 +1,6 @@
 <template>
     <div class="au-animate">
-    <!--<div class="row">
+        <!--<div class="row">
         <div class="col-sm-2">
             <div class="callout callout-info">
                 <small class="text-muted">Time played</small><br>
@@ -32,48 +32,57 @@
                     </select>
                 </div>
 
-                <label class="switch switch-lg switch-3d switch-pill switch-warning">
-                    <input type="checkbox" class="switch-input" click.delegate="toggleServerState()">
+                <label class="switch switch-lg switch-3d switch-pill ${serverStarting ? 'switch-warning' : 'switch-success'}">
+                    <input type="checkbox" class="switch-input" click.delegate="toggleServerState()" checked.bind="serverStarted">
                     <span class="switch-label"></span>
                     <span class="switch-handle"></span>
                 </label>
             </div>
         </div>
 
-        <div class="card-group">
-            <div class="card">
-                <div class="card-block">
-                    <div class="h1 text-muted text-right mb-2">
-                        <i class="icon-people"></i>
-                    </div>
-                    <div class="h4 mb-0">0</div>
-                    <small class="text-muted text-uppercase font-weight-bold">Players online</small>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-block">
-                    <div class="h1 text-muted text-right mb-2">
-                        <i class="icon-clock"></i>
-                    </div>
-                    <div class="h4 mb-0">2h 23m 12s</div>
-                    <small class="text-muted text-uppercase font-weight-bold">Time played</small>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-block">
-                    <div class="h1 text-muted text-right mb-2">
-                        <i class="icon-cursor-move"></i>
-                    </div>
-                    <div class="h4 mb-0">23%</div>
-                    <small class="text-muted text-uppercase font-weight-bold">Evolution</small>
-                    <div class="progress progress-xs mt-1 mb-0">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 23%" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="h1 text-muted text-right mb-2">
+                            <i class="icon-people"></i>
+                        </div>
+                        <div class="h4 mb-0">${playersOnline}</div>
+                        <small class="text-muted text-uppercase font-weight-bold">Players online</small>
                     </div>
                 </div>
             </div>
+
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="h1 text-muted text-right mb-2">
+                            <i class="icon-clock"></i>
+                        </div>
+                        <div class="h4 mb-0">${mapTime}</div>
+                        <small class="text-muted text-uppercase font-weight-bold">Time played</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="h1 text-muted text-right mb-2">
+                            <i class="icon-cursor-move"></i>
+                        </div>
+                        <div class="h4 mb-0">${evolution}%</div>
+                        <small class="text-muted text-uppercase font-weight-bold">Evolution</small>
+                        <div class="progress progress-xs mt-1 mb-0">
+                            <div class="progress-bar bg-info" role="progressbar" css="width: ${evolution}%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-    <!--<span>${serverStarted}</span>-->
-    <!--<span>${serverStarting}</span>-->
+        <!--<span>${serverStarted}</span>-->
+        <!--<span>${serverStarting}</span>-->
     </div>
 </template>

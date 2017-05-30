@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <h3 class="card-header">Server settings</h3>
+        <h5 class="card-header">General settings</h5>
         <div class="card-block">
             <!--<h4 class="card-title"></h4>-->
             <!--<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
@@ -33,26 +33,6 @@
                 <label for="gamePassword" class="col-2 col-form-label">Game password</label>
                 <div class="col-10">
                     <input type="text" class="form-control" id="gamePassword" value.bind="settings.game_password & updateTrigger:'blur'">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="maxPlayers" class="col-2 col-form-label">Maximum number of players</label>
-                <div class="col-10">
-                    <input type="number" class="form-control" id="maxPlayers" value.bind="settings.max_players & updateTrigger:'blur'">
-                    <small class="form-text text-muted">Maximum number of players allowed, admins can join even a full server. 0 means unlimited.</small>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label for="autoPause" class="col-2 col-form-label">Ignore limit for returning players</label>
-                <div class="col-10">
-                    <label class="switch switch-3d switch-primary">
-                        <input type="checkbox" class="switch-input" checked.bind="settings.ignore_player_limit_for_returning_players">
-                        <span class="switch-label"></span>
-                        <span class="switch-handle"></span>
-                    </label>
-                    <small class="form-text text-muted">Players that played on this map already can join even when the max player limit was reached.</small>
                 </div>
             </div>
 
@@ -91,116 +71,140 @@
                     <small class="form-text text-muted">Game will be broadcast on LAN</small>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="card">
-                <div class="card-block">
-                    <h5 class="card-title">Publish on Factorio server</h5>
-                    <!--<p class="card-text">Game will be published on the official Factorio matching server. Requires your factorio.com login credentials.</p>-->
+    <div class="card">
+        <h5 class="card-header">Publish on Factorio server</h5>
+        <div class="card-block">
+            <!--<p class="card-text">Game will be published on the official Factorio matching server. Requires your factorio.com login credentials.</p>-->
 
-                    <div class="form-group row">
-                        <label for="visibilityPublic" class="col-2 col-form-label">Visibility public</label>
-                        <div class="col-10">
-                            <label class="switch switch-3d switch-primary">
+            <div class="form-group row">
+                <label for="visibilityPublic" class="col-2 col-form-label">Visibility public</label>
+                <div class="col-10">
+                    <label class="switch switch-3d switch-primary">
                                 <input type="checkbox" class="switch-input" checked.bind="settings.visibility.public">
                                 <span class="switch-label"></span>
                                 <span class="switch-handle"></span>
                             </label>
-                            <small class="form-text text-muted">Game will be published on the official Factorio matching server</small>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label for="username" class="col-2 col-form-label">Username</label>
-                        <div class="col-10">
-                            <input type="text" class="form-control" id="username" value.bind="settings.username & updateTrigger:'blur'">
-                            <small class="form-text text-muted">Your factorio.com username. Required for games with visibility public</small>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-2 col-form-label">Password</label>
-                        <div class="col-10">
-                            <input type="password" class="form-control" id="password" value.bind="settings.password & updateTrigger:'blur'">
-                            <small class="form-text text-muted">Your factorio.com password. Required for games with visibility public</small>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="token" class="col-2 col-form-label">Token</label>
-                        <div class="col-10">
-                            <input type="text" class="form-control" id="token" value.bind="settings.token & updateTrigger:'blur'">
-                            <small class="form-text text-muted">Authentication token. May be used instead of 'password' above.</small>
-                        </div>
-                    </div>
+                    <small class="form-text text-muted">Game will be published on the official Factorio matching server</small>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-block">
-                    <h5 class="card-title">Autosave</h5>
+            <div class="form-group row">
+                <label for="username" class="col-2 col-form-label">Username</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="username" value.bind="settings.username & updateTrigger:'blur'">
+                    <small class="form-text text-muted">Your factorio.com username. Required for games with visibility public</small>
+                </div>
+            </div>
 
-                    <div class="form-group row">
-                        <label for="autosaveInterval" class="col-2 col-form-label">Autosave interval</label>
-                        <div class="col-10">
-                            <input type="number" class="form-control" id="autosaveInterval" value.bind="settings.autosave_interval & updateTrigger:'blur'">
-                            <small class="form-text text-muted">Autosave interval in minutes</small>
-                        </div>
-                    </div>
+            <div class="form-group row">
+                <label for="password" class="col-2 col-form-label">Password</label>
+                <div class="col-10">
+                    <input type="password" class="form-control" id="password" value.bind="settings.password & updateTrigger:'blur'">
+                    <small class="form-text text-muted">Your factorio.com password. Required for games with visibility public</small>
+                </div>
+            </div>
 
-                    <div class="form-group row">
-                        <label for="autosaveSlots" class="col-2 col-form-label">Autosave slots</label>
-                        <div class="col-10">
-                            <input type="number" class="form-control" id="autosaveSlots" value.bind="settings.autosave_slots & updateTrigger:'blur'">
-                            <small class="form-text text-muted">Server autosave slots, it is cycled through when the server autosaves.</small>
-                        </div>
-                    </div>
+            <div class="form-group row">
+                <label for="token" class="col-2 col-form-label">Token</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="token" value.bind="settings.token & updateTrigger:'blur'">
+                    <small class="form-text text-muted">Authentication token. May be used instead of 'password' above.</small>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <div class="form-group row">
-                        <label for="autosaveOnlyOnServer" class="col-2 col-form-label">Autosave only on server</label>
-                        <div class="col-10">
-                            <label class="switch switch-3d switch-primary">
+    <div class="card">
+        <h5 class="card-header">Autosave</h5>
+        <div class="card-block">
+
+            <div class="form-group row">
+                <label for="autosaveInterval" class="col-2 col-form-label">Autosave interval</label>
+                <div class="col-10">
+                    <input type="number" class="form-control" id="autosaveInterval" value.bind="settings.autosave_interval & updateTrigger:'blur'">
+                    <small class="form-text text-muted">Autosave interval in minutes</small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="autosaveSlots" class="col-2 col-form-label">Autosave slots</label>
+                <div class="col-10">
+                    <input type="number" class="form-control" id="autosaveSlots" value.bind="settings.autosave_slots & updateTrigger:'blur'">
+                    <small class="form-text text-muted">Server autosave slots, it is cycled through when the server autosaves.</small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="autosaveOnlyOnServer" class="col-2 col-form-label">Autosave only on server</label>
+                <div class="col-10">
+                    <label class="switch switch-3d switch-primary">
                         <input type="checkbox" class="switch-input" checked.bind="settings.autosave_only_on_server">
                         <span class="switch-label"></span>
                         <span class="switch-handle"></span>
                     </label>
-                            <small class="form-text text-muted">Whether autosaves should be saved only on server or also on all connected clients.</small>
-                        </div>
-                    </div>
+                    <small class="form-text text-muted">Whether autosaves should be saved only on server or also on all connected clients.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header">Administration</h5>
+        <div class="card-block">
+
+            <div class="form-group row">
+                <label for="admins" class="col-2 col-form-label">Admins</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="admins" value.bind="admins & updateTrigger:'blur'">
+                    <small class="form-text text-muted">List of case insensitive usernames, that will be promoted immediately.</small>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-block">
-                    <h5 class="card-title">Administration</h5>
+            <div class="form-group row">
+                <label for="allowCommands" class="col-2 col-form-label">Allow commands</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="allowCommands" value.bind="settings.allow_commands & updateTrigger:'blur'">
+                    <small class="form-text text-muted">Possible values are, true, false and admins-only.</small>
+                </div>
+            </div>
 
-                    <div class="form-group row">
-                        <label for="admins" class="col-2 col-form-label">Admins</label>
-                        <div class="col-10">
-                            <input type="text" class="form-control" id="admins" value.bind="admins & updateTrigger:'blur'">
-                            <small class="form-text text-muted">List of case insensitive usernames, that will be promoted immediately.</small>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="allowCommands" class="col-2 col-form-label">Allow commands</label>
-                        <div class="col-10">
-                            <input type="text" class="form-control" id="allowCommands" value.bind="settings.allow_commands & updateTrigger:'blur'">
-                            <small class="form-text text-muted">Possible values are, true, false and admins-only.</small>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="onlyAdminPause" class="col-2 col-form-label">Only admins can pause</label>
-                        <div class="col-10">
-                            <label class="switch switch-3d switch-primary">
+            <div class="form-group row">
+                <label for="onlyAdminPause" class="col-2 col-form-label">Only admins can pause</label>
+                <div class="col-10">
+                    <label class="switch switch-3d switch-primary">
                         <input type="checkbox" class="switch-input" checked.bind="settings.only_admins_can_pause_the_game">
                         <span class="switch-label"></span>
                         <span class="switch-handle"></span>
                     </label>
-                            <!--<small class="form-text text-muted">Whether should the server be paused when no players are present.</small>-->
-                        </div>
-                    </div>
+                    <!--<small class="form-text text-muted">Whether should the server be paused when no players are present.</small>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header">Limits</h5>
+        <div class="card-block">
+            <div class="form-group row">
+                <label for="maxPlayers" class="col-2 col-form-label">Maximum number of players</label>
+                <div class="col-10">
+                    <input type="number" class="form-control" id="maxPlayers" value.bind="settings.max_players & updateTrigger:'blur'">
+                    <small class="form-text text-muted">Maximum number of players allowed, admins can join even a full server. 0 means unlimited.</small>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="autoPause" class="col-2 col-form-label">Ignore limit for returning players</label>
+                <div class="col-10">
+                    <label class="switch switch-3d switch-primary">
+                        <input type="checkbox" class="switch-input" checked.bind="settings.ignore_player_limit_for_returning_players">
+                        <span class="switch-label"></span>
+                        <span class="switch-handle"></span>
+                    </label>
+                    <small class="form-text text-muted">Players that played on this map already can join even when the max player limit was reached.</small>
                 </div>
             </div>
 
@@ -230,4 +234,5 @@
 
         </div>
     </div>
+
 </template>

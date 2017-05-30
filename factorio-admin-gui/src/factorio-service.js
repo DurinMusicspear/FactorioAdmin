@@ -1,19 +1,17 @@
+import { inject } from 'aurelia-framework';
 import { HttpClient } from 'aurelia-http-client';
+import { ApiClient } from './api-client';
 
+@inject(ApiClient)
 export class FactorioService {
 
-    constructor() {
+    constructor(apiClient) {
+        this.apiClient = apiClient;
         this.state = 'stoped';
-        this.client = new HttpClient()
-            .configure(x => {
-                x.withBaseUrl('http://localhost:3000/api');
-                //x.withHeader('Authorization', 'bearer 123');
-            });
     }
 
     startServer() {
-        var self = this;
-        this.client.get('start/Test.zip')
+        this.apiClient.startServer()
             .then(function (result) {
                 console.log(result);
                 self.state = 'running';
