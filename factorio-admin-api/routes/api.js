@@ -1,8 +1,6 @@
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
-var async = require('asyncawait/async');
-var await = require('asyncawait/await');
 
 var savePath = process.env.SAVE_FOLDER;
 var configPath = process.env.CONFIG_FOLDER;
@@ -67,10 +65,11 @@ module.exports = function (factorio, rconClient) {
     res.json({ success: true });
   });
 
-  router.get('/server-stats', async (function (req, res, next) {
-    var stats = await (rconClient.stats());
-    res.json({ stats: stats });
-  }));
+  router.get('/server-stats', (req, res, next) => {
+    rconClient.stats().then(stats => {
+      res.json({ stats: stats });
+    });
+  });
 
   return router;
 

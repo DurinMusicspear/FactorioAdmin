@@ -7,7 +7,7 @@ var jwt = require('express-jwt');
 var jwks = require('jwks-rsa');
 
 var factorio = require('./factorio')();
-var rcon = require('./rcon-client')();
+var rcon = require('./rcon-client');
 
 var app = express();
 
