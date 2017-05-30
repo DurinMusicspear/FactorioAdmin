@@ -1,10 +1,11 @@
 import environment from './environment';
+import { AuthService } from './auth-service';
 
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
-    .feature('resources')
-    .plugin('aurelia-animator-css');
+    .feature('resources');
+    // .plugin('aurelia-animator-css');
 
   if (environment.debug) {
     aurelia.use.developmentLogging();
@@ -14,5 +15,14 @@ export function configure(aurelia) {
     aurelia.use.plugin('aurelia-testing');
   }
 
-  aurelia.start().then(() => aurelia.setRoot());
+  var auth = aurelia.container.get(AuthService);
+
+  aurelia.start()
+    .then(a => {
+      if (auth.isAuthenticated()) {
+        a.setRoot('app');
+      } else {
+        a.setRoot('login');
+      }
+    });
 }
