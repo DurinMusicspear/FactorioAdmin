@@ -7,6 +7,7 @@ module.exports = function () {
     var serverProcess = null;
 
     factorio.generateMap = function (fileName) {
+        fileName = fileName + '.zip';
         var filePath = path.join(process.env.SAVE_FOLDER, fileName);
 
         if (fs.existsSync(filePath)) {

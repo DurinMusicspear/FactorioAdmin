@@ -9,8 +9,8 @@ export class Dashboard {
     this.factorioService = factorioService;
     this.apiClient = apiClient;
 
-    this.serverStatus = 'Offline';
-    this.statusColor = 'red';
+    this.serverStatus = '<i class="fa fa-refresh fa-spin"></i>';
+    this.statusColor = '#63c2de';
 
     this.saveFiles = [];
     this.selectedFile = null;
@@ -41,7 +41,7 @@ export class Dashboard {
       this.serverStarted = true;
       this.serverStarting = true;
       this.serverStatus = '<i class="fa fa-refresh fa-spin"></i>';
-      this.statusColor = 'orange';
+      this.statusColor = '#63c2de';
     }
   }
 
@@ -98,8 +98,13 @@ export class Dashboard {
         var time = status.time;
 
         var time = status.time.split(' ');
+        if (time.length > 1 && time[1].indexOf('day') !== -1) {
+          hours = time[0] * 24;
+          time.splice(0, 2);
+        }
+
         if (time.length > 1 && time[1].indexOf('hour') !== -1) {
-          hours = time[0];
+          hours += parseInt(time[0]);
           time.splice(0, 2);
         }
 

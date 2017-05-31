@@ -41,9 +41,21 @@ module.exports = function (factorio, rconClient) {
     res.json(JSON.parse(serverSettings));
   });
 
+  router.post('/map-gen-settings', function (req, res, next) {
+    var mapGenSettings = JSON.stringify(req.body);
+    fs.writeFileSync(path.join(configPath, 'map-gen-settings.json'), mapGenSettings);
+    res.status(200).end();
+  });
+
   router.get('/map-settings', function (req, res, next) {
     var serverSettings = fs.readFileSync(path.join(configPath, 'map-settings.json'));
     res.json(JSON.parse(serverSettings));
+  });
+
+  router.post('/map-settings', function (req, res, next) {
+    var mapSettings = JSON.stringify(req.body);
+    fs.writeFileSync(path.join(configPath, 'map-settings.json'), mapSettings);
+    res.status(200).end();
   });
 
   router.get('/save-files', function (req, res, next) {

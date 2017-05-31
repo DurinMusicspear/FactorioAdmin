@@ -33,19 +33,37 @@ export class ApiClient {
     getSaveFiles() {
         return this.client.get('save-files')
             .then(res => {
-                return res.content.saves;  
+                return res.content.saves;
             });
     }
 
     getMapSettings() {
-        return this.client.get('map-settings');
+        return this.client.get('map-settings')
+            .then(res => {
+                return res.content;
+            });
+    }
+
+    saveMapSettings(settings) {
+        return this.client.post('map-settings', settings);
     }
 
     getMapGenSettings() {
-        return this.client.get('map-gen-settings');
+        return this.client.get('map-gen-settings')
+            .then(res => {
+                return res.content;
+            });
+    }
+
+    saveMapGenSettings(settings) {
+        return this.client.post('map-gen-settings', settings);
     }
 
     getStatus() {
         return this.client.get('server-stats');
+    }
+    
+    generateMap(fileName) {
+        return this.client.get('generate-map/' + fileName);
     }
 }

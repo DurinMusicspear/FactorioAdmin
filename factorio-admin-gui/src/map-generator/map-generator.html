@@ -1,8 +1,166 @@
 <template>
     <div class="card">
-        <h3 class="card-header">Save files</h3>
+        <h3 class="card-header">Map generator</h3>
         <div class="card-block">
-           
+
+            <form class="form-horizontal">
+                <div class="form-group row">
+                    <label class="col-sm-2 form-control-label">Coal</label>
+                    <label class="col-sm-1 form-control-label">Frequency</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.coal.frequency">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Size</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.coal.size">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Richness</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.coal.richness">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 form-control-label">Copper ore</label>
+                    <label class="col-sm-1 form-control-label">Frequency</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.copper_ore.frequency">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Size</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.copper_ore.size">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Richness</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.copper_ore.richness">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 form-control-label">Iron ore</label>
+                    <label class="col-sm-1 form-control-label">Frequency</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.iron_ore.frequency">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Size</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.iron_ore.size">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Richness</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.iron_ore.richness">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 form-control-label">Crude oil</label>
+                    <label class="col-sm-1 form-control-label">Frequency</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.crude_oil.frequency">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Size</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.crude_oil.size">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Richness</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.crude_oil.richness">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 form-control-label">Stone</label>
+                    <label class="col-sm-1 form-control-label">Frequency</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.stone.frequency">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Size</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.stone.size">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Richness</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.stone.richness">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 form-control-label">Enemy base</label>
+                    <label class="col-sm-1 form-control-label">Frequency</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.enemy_base.frequency">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Size</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.enemy_base.size">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Richness</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.enemy_base.richness">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 form-control-label">Uranium ore</label>
+                    <label class="col-sm-1 form-control-label">Frequency</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.uranium_ore.frequency">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Size</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.uranium_ore.size">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-1 form-control-label">Richness</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" value.bind="mapGenSettings.autoplace_controls.uranium_ore.richness">
+                            <option repeat.for="size of sizes" model.bind="size.id">${size.name}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" click.delegate="generateMap()">Generate map</button>
+            </form>
+
         </div>
     </div>
 </template>
