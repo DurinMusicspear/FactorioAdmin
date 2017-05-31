@@ -31,7 +31,10 @@ export class ApiClient {
     }
 
     getSaveFiles() {
-        return this.client.get('save-files');
+        return this.client.get('save-files')
+            .then(res => {
+                return res.content.saves;  
+            });
     }
 
     getMapSettings() {

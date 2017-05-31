@@ -20,23 +20,31 @@
             </div>
         </div>
     </div>-->
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h2 class="card-title">Server: <span css="color: ${statusColor}" innerhtml="${serverStatus | sanitizeHTML}"></span></h2>
 
-        <div class="card">
-            <div class="card-block">
-                <h2 class="card-title">World online: Island</h2>
+                        <!--<div class="progress">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Offline</div>
+                        </div>-->
 
-                <div class="form-group">
-                    <label for="exampleSelect1">Save file</label>
-                    <select class="form-control">
-                        <option>Island</option>
-                    </select>
-                </div>
+                        <select class="form-control" style="margin-bottom: 10px;" value.bind="selectedFile" disabled.bind="serverStatus.toLowerCase() !== 'offline'">
+                            <option repeat.for="file of saveFiles" model.bind="file">${file}</option>
+                        </select>
 
-                <label class="switch switch-lg switch-3d switch-pill ${serverStarting ? 'switch-warning' : 'switch-success'}">
+                        <button class="btn btn-success" style="width: calc(50% - 5px); margin-right: 6px;" click.delegate="startServer()" show.bind="serverStatus.toLowerCase() === 'offline'"><i class="fa fa-play"></i> Start server</button>
+                        <button class="btn btn-danger" style="width: calc(50% - 5px); margin-right: 6px;" click.delegate="stopServer()" show.bind="serverStatus.toLowerCase() !== 'offline'"><i class="fa fa-stop"></i> Stop server</button>
+                        <button class="btn btn-secondary" style="width: calc(50% - 5px);" click.delegate="restartServer()"><i class="fa fa-refresh"></i> Restart server</button>
+
+                        <!--<label class="switch switch-lg switch-3d switch-pill ${serverStarting ? 'switch-warning' : 'switch-success'}">
                     <input type="checkbox" class="switch-input" click.delegate="toggleServerState()" checked.bind="serverStarted">
                     <span class="switch-label"></span>
                     <span class="switch-handle"></span>
-                </label>
+                </label>-->
+                    </div>
+                </div>
             </div>
         </div>
 

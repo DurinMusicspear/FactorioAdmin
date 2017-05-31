@@ -9,6 +9,12 @@ export class Dashboard {
     this.factorioService = factorioService;
     this.apiClient = apiClient;
 
+    this.serverStatus = 'Offline';
+    this.statusColor = 'red';
+
+    this.saveFiles = [];
+    this.selectedFile = null;
+
     this.serverStarted = false;
     this.serverStarting = false;
     this.playersOnline = 0;
@@ -17,39 +23,72 @@ export class Dashboard {
 
     setInterval(() => {
       this.updateServerStatus();
-    }, 1000);
+    }, 5000);
+
+    apiClient.getSaveFiles()
+      .then(saveFiles => {
+        this.saveFiles = saveFiles;
+      });
   }
 
-  toggleServerState() {
-    if (!this.serverStarted) {
-      this.apiClient.startServer('Island.zip');
+  startServer() {
+    if (this.selectedFile && this.selectedFile.length > 0) {
+      this.apiClient.startServer(this.selectedFile)
+        .catch(error => {
+          this.serverStatus = 'Offline';
+          this.statusColor = 'red';
+        });
       this.serverStarted = true;
       this.serverStarting = true;
-      // return true;
-    } else {
-      this.apiClient.stopServer();
-      this.serverStarted = false;
-      // return true;
+      this.serverStatus = '<i class="fa fa-refresh fa-spin"></i>';
+      this.statusColor = 'orange';
     }
-
-    return true;
   }
+
+  stopServer() {
+    this.apiClient.stopServer()
+    this.serverStarted = false;
+    this.serverStarting = false;
+    this.serverStatus = 'Offline';
+    this.statusColor = 'red';
+  }
+
+  restartServer() {
+
+  }
+
+  // toggleServerState() {
+  //   if (!this.serverStarted) {
+
+  //     // return true;
+  //   } else {
+  //     this.apiClient.stopServer();
+  //     this.serverStarted = false;
+  //     // return true;
+  //   }
+
+  //   return true;
+  // }
 
   updateServerStatus() {
     this.apiClient.getStatus()
       .then(res => {
         if (!res.content || !res.content.stats) {
-          if (!this.serverStarting)
+          if (!this.serverStarting) {
             this.serverStarted = false;
+            this.serverStatus = 'Offline';
+            this.statusColor = 'red';
+          }
 
           return;
         }
 
+        this.serverStatus = 'Online';
+        this.statusColor = 'green';
         this.serverStarted = true;
         this.serverStarting = false;
 
         var status = res.content.stats;
-
         var index = status.playersOnline.indexOf(')');
         this.playersOnline = status.playersOnline.substr(16, index - 16);
 
@@ -80,9 +119,10 @@ export class Dashboard {
         this.evolution = evo.toFixed(2);
       })
       .catch(error => {
-        //  if(!this.serverStarting)
         this.serverStarted = false;
         this.serverStarting = false;
+        this.serverStatus = 'Offline';
+        this.statusColor = 'red';
       });
   }
 

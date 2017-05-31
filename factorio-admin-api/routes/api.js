@@ -49,6 +49,7 @@ module.exports = function (factorio, rconClient) {
   router.get('/save-files', function (req, res, next) {
     var saves = [];
     fs.readdirSync(savePath).forEach(file => {
+      file = file.replace('.zip', '');
       saves.push(file);
     });
     res.json({ saves: saves });

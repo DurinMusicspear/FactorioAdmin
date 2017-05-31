@@ -32,6 +32,7 @@ module.exports = function () {
     }
 
     factorio.startServer = function (fileName) {
+        fileName = fileName + '.zip';
         var filePath = path.join(process.env.SAVE_FOLDER, fileName);
 
         if (!fs.existsSync(filePath)) {
@@ -51,8 +52,8 @@ module.exports = function () {
             path.join(process.env.CONFIG_FOLDER, "server-settings.json"),
             //"--port", "",
             "--rcon-port", "25575",
-            "--rcon-password", "d77LPgbPfAxk",
-            "--console-log", "console.txt"
+            "--rcon-password", "d77LPgbPfAxk"
+            //"--console-log", "console.txt"
         ];
 
         serverProcess = factorioProcess(args);

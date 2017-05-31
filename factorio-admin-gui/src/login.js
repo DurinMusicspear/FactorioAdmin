@@ -8,7 +8,9 @@ export class App {
     constructor(aurelia, auth) {
         this.aurelia = aurelia;
         this.auth = auth;
-        this.auth.login();
+
+        if(!this.auth.isAuthenticated())
+            this.auth.login();
     }
 
 }
