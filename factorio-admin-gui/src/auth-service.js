@@ -15,23 +15,19 @@ export class AuthService {
         //     }
         //   }
         // }
+        var token = localStorage.getItem('id_token');
+        if(token) {
+            //TODO: Refresh token
+            this.authenticated = true;
+        }
+
         //const options = { auth: { redirect: true }, autoclose: false };
         this.lock = new Auth0Lock('qLiuvNGbX2UlX4BShUxzS9HyuTr8oQVV', 'johanbjorn.eu.auth0.com');
         this.authenticated = false;
 
-        //this.http = http;
         var self = this;
 
-        var token = localStorage.getItem('id_token');
-        if(token) {
-            this.authenticated = true;
-        }
-
         this.lock.on("authenticated", authResult => {
-            // localStorage.setItem('access_token', authResult.accessToken);
-            // self.authenticated = true;
-            // self.lock.hide();
-
             self.lock.getProfile(authResult.idToken, (error, profile) => {
                 if (error) {
                     // Handle error

@@ -12,7 +12,7 @@ export class Dashboard {
     this.serverStarted = false;
     this.serverStarting = false;
     this.playersOnline = 0;
-    this.mapTime = '';
+    this.mapTime = '0h 0m 0s';
     this.evolution = 0;
 
     setInterval(() => {
