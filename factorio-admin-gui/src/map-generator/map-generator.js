@@ -52,7 +52,7 @@ export class ServerSettings {
   mapSettingsChanged(newValue, oldValue, property) {
     console.log(property, oldValue, newValue);
 
-    if (oldValue === newValue)
+    if (oldValue === newValue || property === 'mapSettings')
       return;
 
     this.saveMapSettings();
@@ -61,7 +61,7 @@ export class ServerSettings {
   mapGenSettingsChanged(newValue, oldValue, property) {
     console.log(property, oldValue, newValue);
 
-    if (oldValue === newValue)
+    if (oldValue === newValue || property === 'mapGenSettings')
       return;
 
     this.saveMapGenSettings();
