@@ -9,9 +9,9 @@ mkdir -p $SAVES
 mkdir -p /factorio/mods
 mkdir -p $CONFIG
 
-if [ ! -f $CONFIG/rconpw ]; then
-  echo $(pwgen 15 1) > $CONFIG/rconpw
-fi
+# if [ ! -f $CONFIG/rconpw ]; then
+#   echo $(pwgen 15 1) > $CONFIG/rconpw
+# fi
 
 if [ ! -f $CONFIG/server-settings.json ]; then
   cp /opt/factorio/data/server-settings.example.json $CONFIG/server-settings.json

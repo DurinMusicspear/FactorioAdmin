@@ -78,7 +78,7 @@ function factorioProcess(args) {
     var proc = spawn(path.join(factorioPath, 'factorio'), args, { shell: false });
 
     proc.stdout.on('data', (data) => {
-        console.log(data);
+        console.log(`stdout: ${data}`);
     });
 
     proc.stderr.on('data', (data) => {

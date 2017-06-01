@@ -3,7 +3,7 @@ FROM frolvlad/alpine-glibc:alpine-3.5
 
 #MAINTAINER https://github.com/dtandersen/docker_factorio_server
 
-ENV VERSION=0.15.13 \
+ENV VERSION=0.15.17 \
     SHA1=d78300a088fba62d745bea5d3b1172aebc5f94c3
 
 RUN mkdir /opt && \
@@ -12,7 +12,7 @@ RUN mkdir /opt && \
     apk add --update --no-cache --virtual .build-deps curl && \
     curl -sSL https://www.factorio.com/get-download/$VERSION/headless/linux64 \
         -o /tmp/factorio_headless_x64_$VERSION.tar.xz && \
-    echo "$SHA1  /tmp/factorio_headless_x64_$VERSION.tar.xz" | sha1sum -c && \
+    #echo "$SHA1  /tmp/factorio_headless_x64_$VERSION.tar.xz" | sha1sum -c && \
     tar xf /tmp/factorio_headless_x64_$VERSION.tar.xz --directory /opt && \
     rm /tmp/factorio_headless_x64_$VERSION.tar.xz && \
     ln -s /factorio/saves /opt/factorio/saves && \
