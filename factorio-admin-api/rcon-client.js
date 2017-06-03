@@ -6,7 +6,7 @@ class RconClient {
     }
 
     stats() {
-        let rcon = new Rcon('localhost', 'd77LPgbPfAxk');
+        let rcon = new Rcon('localhost', 27015, 'd77LPgbPfAxk');
         return rcon.connect().then(() => {
             let result = {};
             return rcon.send('/time')

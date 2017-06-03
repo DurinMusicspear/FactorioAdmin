@@ -52,7 +52,7 @@ module.exports = function () {
             "--server-settings",
             path.join(process.env.CONFIG_FOLDER, "server-settings.json"),
             //"--port", "",
-            "--rcon-port", "25575",
+            "--rcon-port", "27015",
             "--rcon-password", "d77LPgbPfAxk"
             //"--console-log", "console.txt"
         ];

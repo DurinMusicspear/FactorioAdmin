@@ -4,8 +4,8 @@ import { AuthService } from './auth-service';
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()
-    .feature('resources');
-    // .plugin('aurelia-animator-css');
+    .feature('resources')
+    .plugin('aurelia-animator-css');
 
   if (environment.debug) {
     aurelia.use.developmentLogging();
