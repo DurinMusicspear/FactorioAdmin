@@ -13,8 +13,7 @@ export class SaveFiles {
         x.withHeader('Authorization', 'Bearer ' + auth.getAccessToken());
       });
     this.http = http;
-    this.saveFiles = [];
-    //this.files = [];
+    this.selectedFiles = [];
   }
 
   getSaveFiles() {
