@@ -1,0 +1,52 @@
+<template>
+    <require from="./blob-to-url"></require>
+    <require from="./file-list-to-array"></require>
+
+    <div class="card">
+        <h3 class="card-header">Save files</h3>
+        <div class="card-block">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Created</th>
+                        <th>Last used</th>
+                        <th>Playtime</th>
+                        <th>Evolution</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Island</th>
+                        <td>02.07.16</td>
+                        <td>02.07.16</td>
+                        <td>2h 23m 23s</td>
+                        <td>23%</td>
+                        <td><i class="icon-close text-danger"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <form submit.delegate="uploadFiles(selectedFiles)">
+                <label class="custom-file">
+                    <input type="file" name="files" class="custom-file-input" files.bind="selectedFiles" multiple>
+                    <span class="custom-file-control"></span>
+                </label>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+
+            <b>Selected files</b>
+            <div>
+                <ul>
+                    <li repeat.for="file of selectedFiles | fileListToArray">
+                        <!--<img src.bind="file | blobToUrl" />-->
+                        <span>${file.name}: ${(file.size / (1024 * 1024)).toFixed(1)} MB</span>
+                        <!--<p>Last Modified: ${file.lastModifiedDate}</p>-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
