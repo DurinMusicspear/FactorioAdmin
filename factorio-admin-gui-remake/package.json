@@ -82,6 +82,7 @@
       "aurelia-templating-router": "npm:aurelia-templating-router@^1.0.0",
       "bluebird": "npm:bluebird@3.4.1",
       "fetch": "github:github/fetch@^1.0.0",
+      "pace": "npm:pace-progress@^1.0.2",
       "text": "github:systemjs/plugin-text@^0.0.8"
     },
     "devDependencies": {}
