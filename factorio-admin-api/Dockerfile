@@ -33,9 +33,9 @@ COPY . /opt/factorio-server-api/
 
 #ENTRYPOINT ["./run.sh"]
 
-#VOLUME /factorio
+VOLUME /factorio
 
-EXPOSE 34197/udp 27015/tcp 3000/tcp
+EXPOSE 34197/udp 27015/tcp 80/tcp
 
 COPY ./docker-entrypoint.sh /
 
@@ -43,5 +43,5 @@ COPY ./docker-entrypoint.sh /
 CMD ["/docker-entrypoint.sh"]
 # CMD ["npm", "start"]
 
-#docker build -t factorio-admin ./
-#docker run --rm -it -p 3000:3000 -p 34197:34197/udp -p 27015:27015 -e SAVE_FOLDER=/opt/factorio/saves -e CONFIG_FOLDER=/factorio/config -e EXECUTABLE_FOLDER=/opt/factorio/bin/x64 factorio-admin
+#docker build -t factorio-admin-api ./
+#docker run --rm -it -p 3000:3000 -p 34197:34197/udp -p 27015:27015 -e SAVE_FOLDER=/opt/factorio/saves -e CONFIG_FOLDER=/factorio/config -e EXECUTABLE_FOLDER=/opt/factorio/bin/x64 factorio-admin-api

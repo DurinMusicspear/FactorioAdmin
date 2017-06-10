@@ -15,6 +15,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script src="https://cdn.auth0.com/js/lock/10.16/lock.min.js"></script>
+  <script>
+    apiUrl = '<%= apiUrl %>';
+  </script>
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden" aurelia-app="main">
@@ -30,6 +33,7 @@
     System.import('pace');
     System.import('aurelia-bootstrapper');
   </script>
+
 </body>
 
 </html>

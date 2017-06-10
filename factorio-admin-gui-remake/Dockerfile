@@ -1,10 +1,21 @@
-FROM nginx:alpine
+FROM mhart/alpine-node:6
 
-WORKDIR /usr/share/nginx/html
+RUN mkdir -p /usr/src/factorio
+WORKDIR /usr/src/factorio
 
-COPY index.html .
-COPY scripts ./scripts
-COPY src/css ./src/css
-COPY src/fonts ./src/fonts
-COPY src/style.css ./src
+COPY package.json .
+
+#RUN npm install -g npm
+RUN npm install --production
+
+COPY export .
+COPY server ./server
+
+EXPOSE 80
+
+CMD ["npm", "start"]
+
 #COPY nginx.conf /etc/nginx/nginx.conf
+
+#docker build -t factorio-admin-gui ./
+#docker run --rm -it -p 7000:80 -e API_URL=http://localhost:3000/ factorio-admin-gui

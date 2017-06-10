@@ -3,14 +3,12 @@
 // for production.
 module.exports = {
   'list': [
-    'index.html',
     'config.js',
     'favicon.ico',
-    'LICENSE',
     'jspm_packages/system.js',
     'jspm_packages/system-polyfills.js',
     'jspm_packages/system-csp-production.js',
-    'styles/styles.css'
+    'dist/style.css'
   ],
   // this section lists any jspm packages that have
   // unbundled resources that need to be exported.
