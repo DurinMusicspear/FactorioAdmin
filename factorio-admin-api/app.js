@@ -11,6 +11,17 @@ var rcon = require('./rcon-client');
 
 var app = express();
 
+app.use(function (req, res, next) {
+  console.log('Set server timeout');
+  
+  res.setTimeout(600000, function () { // 4 minute timeout adjust for larger uploads
+    console.log('Request has timed out.');
+    res.send(408);
+  });
+
+  next();
+});
+
 var jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
     cache: true,

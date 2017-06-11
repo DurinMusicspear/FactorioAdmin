@@ -28,12 +28,12 @@ class RconClient {
                     return result;
                 })
                 .catch(error => {
-                    console.log('Rcon send failed: ', error);
+                    //console.log('Rcon send failed: ', error);
                     rcon.disconnect();
                     return false;
                 });
         }).catch(err => {
-            console.log('Rcon connection refused: ', err);
+            //console.log('Rcon connection refused: ', err);
             return false;
         });
     }
