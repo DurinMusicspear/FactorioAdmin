@@ -4,6 +4,8 @@ var path = require('path');
 var multer = require('multer');
 var upload = multer({ dest: 'uploads/' }).array('files');
 
+var savePath = process.env.SAVE_FOLDER || '/factorio/saves';
+
 module.exports = function (app) {
 
     app.post('/upload-save-files', extendTimeout, (req, res) => {
@@ -23,7 +25,7 @@ module.exports = function (app) {
                         console.log(`Wrong filetype: ${file.originalname}`);
                         errors.push({ message: `Wrong filetype for ${file.originalname}, only .zip are accepted` });
                     } else {
-                        var newPath = path.join(process.env.SAVE_FOLDER, file.originalname);
+                        var newPath = path.join(savePath, file.originalname);
                         if (fs.existsSync(newPath)) {
                             fs.unlink(file.path);
                             console.log(`File already exists: ${newPath}`);

@@ -2,13 +2,17 @@ var spawn = require('child_process').spawn;
 var fs = require('fs');
 var path = require('path');
 
+var savePath = process.env.SAVE_FOLDER || '/factorio/saves';
+var configPath = process.env.CONFIG_FOLDER || '/factorio/config';
+var executablePath = process.env.CONFIG_FOLDER || '/opt/factorio/bin/x64';
+
 module.exports = function () {
     var factorio = {};
     var serverProcess = null;
 
     factorio.generateMap = function (fileName) {
         fileName = fileName + '.zip';
-        var filePath = path.join(process.env.SAVE_FOLDER, fileName);
+        var filePath = path.join(savePath, fileName);
 
         if (fs.existsSync(filePath)) {
             console.log('Savefile already exist: ' + fileName);
@@ -24,9 +28,9 @@ module.exports = function () {
             "--create",
             filePath,
             "--map-settings",
-            path.join(process.env.CONFIG_FOLDER, "map-settings.json"),
+            path.join(configPath, "map-settings.json"),
             "--map-gen-settings",
-            path.join(process.env.CONFIG_FOLDER, "map-gen-settings.json"),
+            path.join(configPath, "map-gen-settings.json"),
         ];
 
         var proc = factorioProcess(args);
@@ -34,7 +38,7 @@ module.exports = function () {
 
     factorio.startServer = function (fileName) {
         fileName = fileName + '.zip';
-        var filePath = path.join(process.env.SAVE_FOLDER, fileName);
+        var filePath = path.join(savePath, fileName);
 
         if (!fs.existsSync(filePath)) {
             console.log('Savefile does not exist: ' + fileName);
@@ -50,7 +54,7 @@ module.exports = function () {
             "--start-server",
             filePath,
             "--server-settings",
-            path.join(process.env.CONFIG_FOLDER, "server-settings.json"),
+            path.join(configPath, "server-settings.json"),
             //"--port", "",
             "--rcon-port", "27015",
             "--rcon-password", "d77LPgbPfAxk"
@@ -74,7 +78,7 @@ module.exports = function () {
 };
 
 function factorioProcess(args) {
-    var factorioPath = process.env.EXECUTABLE_FOLDER;
+    var factorioPath = executablePath;
     var proc = spawn(path.join(factorioPath, 'factorio'), args, { shell: false });
 
     proc.stdout.on('data', (data) => {

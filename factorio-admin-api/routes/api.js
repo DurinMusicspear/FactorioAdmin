@@ -2,8 +2,8 @@ var express = require('express');
 var fs = require('fs');
 var path = require('path');
 
-var savePath = process.env.SAVE_FOLDER;
-var configPath = process.env.CONFIG_FOLDER;
+var savePath = process.env.SAVE_FOLDER || '/factorio/saves';
+var configPath = process.env.CONFIG_FOLDER || '/factorio/config';
 
 module.exports = function (factorio, rconClient) {
   var router = express.Router();

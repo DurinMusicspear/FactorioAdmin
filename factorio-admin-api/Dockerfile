@@ -44,4 +44,4 @@ CMD ["/docker-entrypoint.sh"]
 # CMD ["npm", "start"]
 
 #docker build -t factorio-admin-api ./
-#docker run --rm -it -p 3000:3000 -p 34197:34197/udp -p 27015:27015 -e SAVE_FOLDER=/opt/factorio/saves -e CONFIG_FOLDER=/factorio/config -e EXECUTABLE_FOLDER=/opt/factorio/bin/x64 factorio-admin-api
+#docker run --rm -it -p 3000:3000 -p 34197:34197/udp -p 27015:27015 factorio-admin-api

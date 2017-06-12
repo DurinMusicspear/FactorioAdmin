@@ -8,3 +8,5 @@ build/reports
 coverage
 test/e2e/dist
 /export
+.env
+db.json

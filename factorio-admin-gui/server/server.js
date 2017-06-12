@@ -5,11 +5,21 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var low = require('lowdb')
 
 var routes = require('./routes/index');
 // var users = require('./routes/users');
 
 var app = express();
+module.exports = app;
+
+var db = low('db.json', { storage: require('lowdb/lib/storages/file-sync') });
+//db.setState({})
+db.defaults({ containers: [] })
+  .write();
+app.db = db;
+
+var dockerService = require('./docker-service');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
