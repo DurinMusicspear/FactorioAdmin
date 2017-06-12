@@ -1,6 +1,6 @@
 import { inject } from 'aurelia-dependency-injection';
 import { Redirect } from 'aurelia-router';
-import { AuthService } from './auth-service';
+import { AuthService } from 'auth/auth-service';
 
 @inject(AuthService)
 export class App {

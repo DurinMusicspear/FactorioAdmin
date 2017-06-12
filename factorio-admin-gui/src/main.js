@@ -1,5 +1,5 @@
 import environment from './environment';
-import { AuthService } from './auth-service';
+import { AuthService } from 'auth/auth-service';
 
 export function configure(aurelia) {
   aurelia.use
@@ -11,9 +11,9 @@ export function configure(aurelia) {
     aurelia.use.developmentLogging();
   }
 
-  if (environment.testing) {
-    aurelia.use.plugin('aurelia-testing');
-  }
+  // if (environment.testing) {
+  //   aurelia.use.plugin('aurelia-testing');
+  // }
 
   var auth = aurelia.container.get(AuthService);
 
@@ -22,7 +22,7 @@ export function configure(aurelia) {
       if (auth.isAuthenticated()) {
         a.setRoot('app');
       } else {
-        a.setRoot('login');
+        a.setRoot('auth/login');
       }
     });
 }

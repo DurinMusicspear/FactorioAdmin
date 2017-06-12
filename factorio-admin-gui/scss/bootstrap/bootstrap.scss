@@ -10,7 +10,7 @@
 @import "variables";
 @import "mixins";
 
-@import "print";
+// @import "print";
 
 // Core CSS
 @import "reboot";
@@ -31,22 +31,22 @@
 @import "nav";
 @import "navbar";
 @import "card";
-@import "breadcrumb";
+// @import "breadcrumb";
 @import "pagination";
 @import "badge";
-@import "jumbotron";
+// @import "jumbotron";
 @import "alert";
 @import "progress";
-@import "media";
+// @import "media";
 @import "list-group";
 @import "responsive-embed";
 @import "close";
 
 // Components w/ JavaScript
 @import "modal";
-@import "tooltip";
-@import "popover";
-@import "carousel";
+// @import "tooltip";
+// @import "popover";
+// @import "carousel";
 
 // Utility classes
 @import "utilities";
