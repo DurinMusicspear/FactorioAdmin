@@ -47,8 +47,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '100mb' }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '100mb' }));
 app.use(cookieParser())
 
 app.use('/api', require('./routes/api')(factorio, rcon));
