@@ -10,3 +10,4 @@ test/e2e/dist
 /export
 .env
 db.json
+/server/containers

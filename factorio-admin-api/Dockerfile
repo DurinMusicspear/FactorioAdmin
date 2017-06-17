@@ -3,11 +3,11 @@ FROM frolvlad/alpine-glibc:alpine-3.5
 
 #MAINTAINER https://github.com/dtandersen/docker_factorio_server
 
-ENV VERSION=0.15.19 \
+ENV VERSION=0.15.21 \
     SHA1=d78300a088fba62d745bea5d3b1172aebc5f94c3
 
 RUN mkdir /opt && \
-    apk add --update --no-cache nodejs && \
+    #apk add --update --no-cache nodejs && \
     apk add --update --no-cache tini pwgen && \
     apk add --update --no-cache --virtual .build-deps curl && \
     curl -sSL https://www.factorio.com/get-download/$VERSION/headless/linux64 \
@@ -24,10 +24,10 @@ RUN mkdir -p /opt/factorio-server-api/
 WORKDIR /opt/factorio-server-api/
 
 # Install app dependencies
-COPY package.json /opt/factorio-server-api/
+#COPY package.json /opt/factorio-server-api/
 
 #RUN npm install -g npm
-RUN npm install --production
+#RUN npm install --production
 
 COPY . /opt/factorio-server-api/
 

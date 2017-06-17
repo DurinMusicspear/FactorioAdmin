@@ -4,6 +4,7 @@ set -e
 
 SAVES=/factorio/saves
 CONFIG=/factorio/config
+PORT=34197
 
 mkdir -p $SAVES
 mkdir -p /factorio/mods
@@ -31,14 +32,15 @@ fi
 #     --map-gen-settings $CONFIG/map-gen-settings.json
 # fi
 
-# exec /opt/factorio/bin/x64/factorio \
-#   --port $PORT \
-#   --start-server-load-latest \
-#   --server-settings $CONFIG/server-settings.json \
-#   --server-whitelist $CONFIG/server-whitelist.json \
-#   --server-banlist $CONFIG/server-banlist.json \
-#   --rcon-port 27015 \
-#   --rcon-password "$(cat $CONFIG/rconpw)" \
-#   --server-id /factorio/config/server-id.json
+exec /opt/factorio/bin/x64/factorio \
+  --port $PORT \
+  --start-server $SAVES/$SAVE_FILE.zip \
+#  --start-server-load-latest \
+  --server-settings $CONFIG/server-settings.json \
+#  --server-whitelist $CONFIG/server-whitelist.json \
+#  --server-banlist $CONFIG/server-banlist.json \
+  --rcon-port 27015
+#  --rcon-password "$(cat $CONFIG/rconpw)" \
+#  --server-id /factorio/config/server-id.json
 
-npm start /opt/factorio-server-api
+#npm start /opt/factorio-server-api

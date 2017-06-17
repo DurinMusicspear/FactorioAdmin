@@ -15,7 +15,7 @@ module.exports = app;
 
 var db = low('db.json', { storage: require('lowdb/lib/storages/file-sync') });
 //db.setState({})
-db.defaults({ containers: [] })
+db.defaults({ servers: [] })
   .write();
 app.db = db;
 
@@ -34,6 +34,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../')));
 
 app.use('/', routes);
+app.use('/api', require('./routes/docker'));
 // app.use('/users', users);
 
 // catch 404 and forward to error handler
